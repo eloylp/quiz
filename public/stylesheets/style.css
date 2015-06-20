@@ -4,6 +4,19 @@ body {
   background-color: #E6E6E6;
 }
 
+nav {
+  border-bottom: 1px solid green;
+  margin-bottom: 50px;
+}
+nav li {
+  display: inline;
+}
+
+footer {
+  margin-top: 50px;
+  border-top: 1px solid black;
+}
+
 a {
   color: #00B7FF;
 }
