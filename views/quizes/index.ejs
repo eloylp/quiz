@@ -1,0 +1,17 @@
+<h1>Lista de quizes</h1>
+
+<ul>
+<% quizes.forEach(function(quiz){ %>
+<li><a href="/quizes/<%= quiz.id %>"><%= quiz.pregunta %></a></li>
+<% }); %>
+</ul>
+
+<hr>
+<h3> Buscador </h3><br>
+<form enctype="application/x-www-form-urlencoded" method="get" action="/quizes">
+  <input type="text" name="search" placeholder="Escriba su búsqueda ..">
+  <button type="submit">Buscar !</button>
+</form>
+
+<h3>Ultima búsqueda:</h3>
+<%= searched %>

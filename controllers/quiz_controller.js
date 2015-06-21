@@ -1,35 +1,59 @@
+var models = require('../models/models');
 
-// Lo siento , no puedo evitarlo. Hagamoslo mas interesante con un
-// array de preguntas. Simplemente añade el objeto correspondiente para mas preguntas !!
+exports.load = function(req, res, next, quizId){
 
-var questionsRel = [
+  models.Quiz.find(quizId).then(function(quiz){
+    if(quiz){
+      req.quiz = quiz;
+      next();
+    } else {
+      next(new error('No existe quizId=' + quizId));
+    }
+  }).catch(function(error){next(error);});
 
-  {"key": "qrom", "question": "¿ Cuál es la capital de Italia ?", "expected": "Roma"},
-  {"key": "qpor", "question": "¿ Cuál es la capital de Portugal ?", "expected": "Lisboa"},
-  {"key": "qnode", "question": "¿ Cuál es el futuro de la WEB ?", "expected": "nodejs"}
+};
 
-];
+exports.index = function(req, res){
 
-exports.question = function(req, res){
+  var searchu = req.params.quidId;
+  var where = searchu ? {where:["pregunta like ?", ('%' + searchu.replace(/\s/g, '%') + '%').replace(/%{2,}/g, '%')]} : '' ;
+  console.log(where);
+  models.Quiz.findAll(where).then(function(quizes){
+    res.render('quizes/index', {
+      quizes: quizes,
+      searched: searchu
+    });
+  });
+};
 
-  var actualQuestion = questionsRel[Math.floor(Math.random()*questionsRel.length)];
-  res.render("quizes/question", actualQuestion);
+exports.show = function(req, res){
+
+    res.render("quizes/show", req.quiz);
 }
 
 exports.answer = function(req, res){
 
-  var question;
-  for (var q in questionsRel){
+  var quiz = req.quiz;
 
-    if(questionsRel[q].key == req.query.key){
-      question = questionsRel[q];
-      break;
+  if(quiz){
+
+    quiz.userResponse = req.query.response;
+
+    if(quiz.respuesta.toLowerCase() == req.query.response.toLowerCase()){
+
+      quiz.style = 'green';
+      quiz.responseMessage = 'Respuesta correcta !';
+
     }else{
-      question = false;
+
+      quiz.style = 'red';
+      quiz.responseMessage = 'Respuesta incorrecta !';
     }
-  }
-  /// Error si no reconocemos la pregunta.
-  if(!question){
+
+    res.render("quizes/answer", quiz);
+
+  }else{
+
     res.status(500);
     res.render('error', {
       message: "Quiz server 1.0 no lo sabe todo ...",
@@ -39,21 +63,15 @@ exports.answer = function(req, res){
       }
 
     });
-  }
+  };
+};
 
-  question.userResponse = req.query.response;
+exports.random = function(req, res){
 
-  if(question.expected.toLowerCase() == req.query.response.toLowerCase()){
+  models.Quiz.findAll(function(quizes){
 
-    question.style = 'green';
-    question.responseMessage = 'Respuesta correcta !';
+    var quiz = quizes[Math.floor(Math.random()*quizes.length)];
+    res.render("quizes/show", quiz);
 
-  }else{
-
-    question.style = 'red';
-    question.responseMessage = 'Respuesta incorrecta !';
-  }
-
-  res.render("quizes/answer", question);
-
+  });
 }
