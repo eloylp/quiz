@@ -1,9 +1,9 @@
-<h1><%= pregunta %></h1>
+<h1><%= quiz.pregunta %></h1>
 <p>
-  Has respondido <%= userResponse %>.
+  Has respondido <%= quiz.userResponse %>.
 </p>
 <p>
-  La respuesta es <%= respuesta %>.
+  La respuesta es <%= quiz.respuesta %>.
 </p>
-<h3 style="color:<%= style %>"><%= responseMessage %></h3>
+<h3 style="color:<%= quiz.style %>"><%= quiz.responseMessage %></h3>
 <p><a href="/quizes/random">Volver a Jugar !!!</a></p>

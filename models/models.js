@@ -13,11 +13,7 @@ var host     = (url[4] || null);
 var storage  = process.env.DATABASE_STORAGE;
 
 var sequelize = new Sequelize(DB_name, user, pwd,
-  { dialect:protocol,
-    dialectOptions: {
-        ssl: true
-    },
-    native: true,
+  { dialect:protocol,    
     protocol: protocol,
     port: port,
     host: host,

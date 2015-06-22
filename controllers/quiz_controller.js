@@ -15,9 +15,8 @@ exports.load = function(req, res, next, quizId){
 
 exports.index = function(req, res){
 
-  var searchu = req.params.quidId;
+  var searchu = req.query.search;
   var where = searchu ? {where:["pregunta like ?", ('%' + searchu.replace(/\s/g, '%') + '%').replace(/%{2,}/g, '%')]} : '' ;
-  console.log(where);
   models.Quiz.findAll(where).then(function(quizes){
     res.render('quizes/index', {
       quizes: quizes,
@@ -28,7 +27,7 @@ exports.index = function(req, res){
 
 exports.show = function(req, res){
 
-    res.render("quizes/show", req.quiz);
+    res.render("quizes/show", {quiz: req.quiz});
 }
 
 exports.answer = function(req, res){
@@ -50,7 +49,7 @@ exports.answer = function(req, res){
       quiz.responseMessage = 'Respuesta incorrecta !';
     }
 
-    res.render("quizes/answer", quiz);
+    res.render("quizes/answer", {quiz: quiz});
 
   }else{
 
@@ -68,10 +67,10 @@ exports.answer = function(req, res){
 
 exports.random = function(req, res){
 
-  models.Quiz.findAll(function(quizes){
+  models.Quiz.findAll().then(function(quizes){
 
     var quiz = quizes[Math.floor(Math.random()*quizes.length)];
-    res.render("quizes/show", quiz);
+    res.render("quizes/show", {quiz:quiz});
 
   });
 }
