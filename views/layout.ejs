@@ -17,7 +17,17 @@
   <section>
   <%- body %>
   </section>
-
+  <section>
+    <strong class="errors">
+      <% if(errors.length > 0){ %>
+      <ul>
+      <%  for (var e in errors) { %>
+        <li><%= errors[e].message %></li>
+        <% } %>
+      </ul>
+      <% } %>
+    </strong>
+  </section>
 
   <footer>
     <a href="https://github.com/sandboxwebs/quiz" target="_blank">Fork me in GitHub</a>

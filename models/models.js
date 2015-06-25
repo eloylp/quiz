@@ -13,7 +13,7 @@ var host     = (url[4] || null);
 var storage  = process.env.DATABASE_STORAGE;
 
 var sequelize = new Sequelize(DB_name, user, pwd,
-  { dialect:protocol,    
+  { dialect:protocol,
     protocol: protocol,
     port: port,
     host: host,
@@ -32,15 +32,19 @@ sequelize.sync().then(function(){
       Quiz.bulkCreate([
         {
           pregunta: "¿ Cual es el futuro de la web ?",
-          respuesta: "nodejs"
+          respuesta: "nodejs",
+          tematica: "tecnologia"
         },
         {
           pregunta: "¿ Cual es la capital de Portugal ?",
-          respuesta: "Lisboa"
+          respuesta: "Lisboa",
+          tematica: "otro"
         },
         {
           pregunta: "¿ Cual es la capital de Italia ?",
-          respuesta: "Roma"
+          respuesta: "Roma",
+          tematica: "otro"
+
         }]).then(function(){
         console.log("Base de datos inicializada");
       });

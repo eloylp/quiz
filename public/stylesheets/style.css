@@ -20,3 +20,7 @@ footer {
 a {
   color: #00B7FF;
 }
+
+.errors{
+  color:red;
+}

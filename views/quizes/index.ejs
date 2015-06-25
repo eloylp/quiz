@@ -1,10 +1,25 @@
 <h1>Lista de quizes</h1>
 
-<ul>
+<table>
 <% quizes.forEach(function(quiz){ %>
-<li><a href="/quizes/<%= quiz.id %>"><%= quiz.pregunta %></a></li>
+  <tr>
+    <td><a href="/quizes/<%= quiz.id %>"><%= quiz.pregunta %></a></td>
+    <td><%= quiz.tematica %></td>
+    <td><a href="/quizes/<%= quiz.id %>/edit"><button type="button">Editar</button></a></td>
+    <td>
+      <form method="post" action="/quizes/<%= quiz.id %>?_method=delete">
+        <button type="submit" onClick="return confirm('borrar: <%= quiz.pregunta %>')">
+        Borrar
+        </button>
+      </form>
+
+  </tr>
 <% }); %>
-</ul>
+</table>
+
+<p>
+<a href="/quizes/new"><button type="button">Crear pregunta</button></a>
+</p>
 
 <hr>
 <h3> Buscador </h3><br>
