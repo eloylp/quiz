@@ -20,7 +20,7 @@ router.delete('/quizes/:quizId(\\d+)', quizController.delete);
 
 
 router.get('/author', function(req, res){
-  res.render('author');
+  res.render('author', {errors: []});
 });
 
 module.exports = router;
