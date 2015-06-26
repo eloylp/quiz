@@ -97,7 +97,7 @@ exports.create = function(req, res){
       res.render("quizes/new", {quiz: quiz, errors: err.errors});
     }else{
       quiz.save({fields: ["pregunta", "respuesta", "tematica"]}).
-      then(function(){ res.redirect("quizes")});
+      then(function(){ res.redirect("/quizes")});
     }
   });
 
@@ -111,8 +111,6 @@ exports.edit = function(req, res){
 }
 
 exports.update = function(req, res){
-
-  console.log(req.quiz);
 
   req.quiz.pregunta = req.body.quiz.pregunta;
   req.quiz.respuesta = req.body.quiz.respuesta;
@@ -141,5 +139,4 @@ exports.delete = function(req, res){
     res.redirect('/quizes');
 
   }).catch(function(error){next(error)});
-
 }

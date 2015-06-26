@@ -14,7 +14,14 @@ module.exports = function(Sequelize, DataTypes){
     },
     tematica:{
       type: DataTypes.STRING,
-      validate: { notEmpty: {msg: "-> Falta tema."} }}
+      validate: {
+        notEmpty: {msg: "-> Seleccione un tema."},
+        isIn: {
+          args: [['ocio', 'tecnologia', 'humanidades', 'otro', 'ciencia']],
+          msg: "Seleccione un tema."
+        }
+      }
+    }
   });
 
 };
