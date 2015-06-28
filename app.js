@@ -26,7 +26,7 @@ app.use(cookieParser('Quiz 2015'));
 app.use(session({
                  secure: true,
                  rolling: true,
-                 secret: 'seed',
+                 secret: 'Quiz 2015',
                  resave: false,
                  saveUninitialized: true
                  })); // rolling for reset expires in each request
