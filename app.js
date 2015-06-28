@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(cookieParser('Quiz 2015'));
 app.use(session({
-                 secure: true,
+                 secure: false,
                  rolling: true,
                  secret: 'Quiz 2015',
                  resave: false,

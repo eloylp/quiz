@@ -32,8 +32,6 @@ exports.index = function(req, res){
 
 exports.show = function(req, res){
 
-    console.log(req.quiz);
-
     res.render("quizes/show", {quiz: req.quiz, errors: []});
 }
 
@@ -153,7 +151,6 @@ exports.statistics = function(req, res){
     include: [{model: models.Comment}]
   }).then(function(quizes){
 
-    console.log(quizes);
     var statistics = {}
     statistics.questions = quizes.length;
     statistics.comments = 0;
