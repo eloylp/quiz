@@ -1,0 +1,23 @@
+<h1>Estadísticas</h1>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>Preguntas</th>
+      <th>Comentarios</th>
+      <th>Comentarios por pregunta (media)</th>
+      <th>Preguntas sin comentarios</th>
+      <th>Preguntas con comentarios</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= statistics.questions %></td>
+      <td><%= statistics.comments %></td>
+      <td><%= statistics.commentsRatio %></td>
+      <td><%= statistics.questionsWithOutComments %></td>
+      <td><%= statistics.questionsWithComments %></td>
+    </tr>
+
+  </tbody>
+</table>

@@ -145,3 +145,31 @@ exports.delete = function(req, res){
 
   }).catch(function(error){next(error)});
 }
+
+
+exports.statistics = function(req, res){
+
+  models.Quiz.findAll({
+    include: [{model: models.Comment}]
+  }).then(function(quizes){
+
+    console.log(quizes);
+    var statistics = {}
+    statistics.questions = quizes.length;
+    statistics.comments = 0;
+    statistics.questionsWithOutComments = 0;
+    statistics.questionsWithComments = 0;
+    statistics.commentsRatio = 0;
+
+    quizes.forEach(function(q){
+      if(q.Comments.length === 0){
+        statistics.questionsWithOutComments++;
+      }else{
+        statistics.questionsWithComments++;
+      }
+      statistics.comments += q.Comments.length;
+    });
+    statistics.commentsRatio = (statistics.comments / statistics.questions).toFixed(2);
+    res.render('quizes/statistics', {statistics: statistics, errors: []});
+  });
+}

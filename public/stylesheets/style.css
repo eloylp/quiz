@@ -28,3 +28,7 @@ a {
 .right{
   text-align: right;
 }
+
+.bordered{
+  border: 1px solid grey;
+}

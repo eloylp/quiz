@@ -21,7 +21,7 @@ exports.create = function(req, res){
       id: user.id,
       username: user.username
     };
-    req.session.cookie.maxAge = 120000;
+    req.session.cookie.maxAge = 120000;  //  setting max age 
     res.redirect(req.session.redir.toString());
   });
 };
