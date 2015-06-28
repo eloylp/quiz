@@ -23,7 +23,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser('Quiz 2015'));
-app.use(session({secure: true, rolling: true})); // rolling for reset expires in each request
+app.use(session({secure: true, rolling: true, resave:true})); // rolling for reset expires in each request
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
