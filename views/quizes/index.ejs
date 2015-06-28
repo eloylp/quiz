@@ -5,6 +5,7 @@
   <tr>
     <td><a href="/quizes/<%= quiz.id %>"><%= quiz.pregunta %></a></td>
     <td><%= quiz.tematica %></td>
+    <% if(session.user){ %>
     <td><a href="/quizes/<%= quiz.id %>/edit"><button type="button">Editar</button></a></td>
     <td>
       <form method="post" action="/quizes/<%= quiz.id %>?_method=delete">
@@ -12,15 +13,16 @@
         Borrar
         </button>
       </form>
-
+    </td>
+    <% } %>
   </tr>
 <% }); %>
 </table>
-
+<% if(session.user) { %>
 <p>
 <a href="/quizes/new"><button type="button">Crear pregunta</button></a>
 </p>
-
+<% } %>
 <hr>
 <h3> Buscador </h3><br>
 <form enctype="application/x-www-form-urlencoded" method="get" action="/quizes">

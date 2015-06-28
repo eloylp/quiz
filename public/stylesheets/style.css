@@ -24,3 +24,7 @@ a {
 .errors{
   color:red;
 }
+
+.right{
+  text-align: right;
+}
