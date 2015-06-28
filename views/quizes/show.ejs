@@ -3,3 +3,8 @@
   <input type="text" name="response" placeholder="Escriba su respuesta ..">
   <button type="submit">Contestar</button>
 </form>
+
+<p><a href="/quizes/<%= quiz.id %>/comments/new"><button type="button">Nuevo comentario</button></a></p>
+<% for(i in quiz.Comments){ %>
+<p> - <%= quiz.Comments[i].texto %></p>
+<% } %>
