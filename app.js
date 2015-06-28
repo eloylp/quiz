@@ -21,14 +21,11 @@ app.use(viewPartials());
 app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false}));
+app.use(bodyParser.urlencoded());
 app.use(cookieParser('Quiz 2015'));
 app.use(session({
                  secure: false,
                  rolling: true,
-                 secret: 'Quiz 2015',
-                 resave: false,
-                 saveUninitialized: true
                  })); // rolling for reset expires in each request
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
